@@ -1,0 +1,27 @@
+body {
+    padding: 0;
+    margin: 0;
+
+}
+
+.card-text-movie {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.test {
+    background-color: aliceblue;
+    padding: 50px;
+
+}
+
+.card-movie {
+    transition: transform 0.3s ease;
+    min-height: 836.5px;
+}
+
+.card-movie:hover {
+    transform: scale(1.03);
+}

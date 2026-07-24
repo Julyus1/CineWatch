@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineWatch</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <div class=" test">
+        <!--Movie list container-->
+        <!--Header for the movie list!-->
+        <div class="row justify-content-center movie-content ">
+            <!--Movie Content starts here as a card list-->
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                <% if(locals.movies) {%>
+
+                    <%movies.forEach(movie=>{ %>
+                        <div class="col">
+
+                            <div class="card card-movie">
+                                <img src="<%= posterUrl + movie.poster_path %>" class="card-img-top" alt="Movie Poster">
+                                <div class="card-body" style="max-height:350px">
+                                    <h5 class="card-title">
+                                        <%= movie.title %>
+                                    </h5>
+                                    <p>
+                                        <%= movie.vote_average.toFixed(1) %><span> •</span>
+                                            <%= movie.release_date.slice(0,4) %>
+                                                <% let genreArr=movie.genre_ids %>
+                                                    <% let targetGenre=Array.isArray(genreArr) ? genreArr: [genreArr];
+                                                        %>
+                                                        <% let genreName=genres.filter(g=>
+                                                            targetGenre.includes(g.id)).map(g=> g.name)
+                                                            %>
+
+
+                                                            <% genreName.forEach(genreName=>{ %>
+                                                                <span>•</span>
+                                                                <%= genreName%>
+                                                                    <% }) %>
+                                    </p>
+                                    <p class="card-text card-text-movie">
+                                        <%= movie.overview %>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                            <% } %>
+
+            </div>
+
+        </div>
+
+
+        <!--Container for prompt section-->
+        <div class="row randomizer-container card" style="margin-top:100px">
+            <div class="card-body">
+                <!--Header for the form-->
+                <h1><span style="font-weight:bold">CineWatch:</span>
+                    <em>Find a movie for your mood </em>
+                </h1>
+                <p>Choose a mood right below and press Recommend to get curated suggestion tailored to how you feel
+                    right now.</p>
+                <!--Container for form and button-->
+                <div class="container mx-auto">
+                    <!-- Form Starts -->
+                    <form action=" /recommend" method="POST">
+                        <div class="row row-cols-4">
+
+                            <div class="form-check col">
+                                <input class="form-check-input" type="radio" value="happy" id="happy" name="mood"
+                                    checked>
+                                <label class="form-check-label" for="happy">
+                                    Happy
+                                </label>
+                            </div>
+                            <div class="form-check col">
+                                <input class="form-check-input" type="radio" value="sad" id="sad" name="mood">
+                                <label class="form-check-label" for="sad">
+                                    Sad
+                                </label>
+                            </div>
+                            <div class="form-check col">
+                                <input class="form-check-input" type="radio" value="romantic" id="romantic" name="mood">
+                                <label class="form-check-label" for="romantic">
+                                    Romantic
+                                </label>
+                            </div>
+                            <div class="form-check col">
+                                <input class="form-check-input" type="radio" value="excited" id="excited" name="mood">
+                                <label class="form-check-label" for="excited">
+                                    Excited
+                                </label>
+                            </div>
+                            <div class="form-check col">
+                                <input class="form-check-input" type="radio" value="scared" id="scared" name="mood">
+                                <label class="form-check-label" for="scared">
+                                    Scared
+                                </label>
+                            </div>
+
+                            <div class="form-check col">
+                                <input class="form-check-input" type="radio" value="curious" id="curious" name="mood">
+                                <label class="form-check-label" for="curious">
+                                    Curious
+                                </label>
+                            </div>
+                            <div class="form-check col">
+                                <input class="form-check-input" type="radio" value="tense" id="tense" name="mood">
+                                <label class="form-check-label" for="tense">
+                                    Tense
+                                </label>
+                            </div>
+                            <div class="form-check col">
+                                <input class="form-check-input" type="radio" value="adventurous" id="adventurous"
+                                    name="mood">
+                                <label class="form-check-label" for="adventurous">
+                                    Adventurous
+                                </label>
+                            </div>
+                            <div class="form-check col">
+                                <input class="form-check-input" type="radio" value="angry" id="angry" name="mood">
+                                <label class="form-check-label" for="angry">
+                                    Angry
+                                </label>
+                            </div>
+                            <div class="form-check col">
+                                <input class="form-check-input" type="radio" value="motivated" id="motivated"
+                                    name="mood">
+                                <label class="form-check-label" for="motivated">
+                                    Motivated
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button style="margin-top:20px;" type="submit" class="btn btn-primary">Recommend</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
