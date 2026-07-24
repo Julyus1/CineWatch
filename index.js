@@ -66,7 +66,7 @@ app.post("/recommend", async (req, res) => {
         const sampleMovies = movies.slice((randomNumber - 8), randomNumber);
 
 
-        res.render("index", { movies: sampleMovies, posterUrl: "https:/image.tmdb.org/t/p/w400", genres: genresResponse.data.genres });
+        res.render("index", { movies: sampleMovies, posterUrl: "https://image.tmdb.org/t/p/w400", genres: genresResponse.data.genres });
 
 
     } catch (error) {
