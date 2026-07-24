@@ -2,11 +2,22 @@ import express from "express"
 import axios from "axios"
 import bodyParser from "body-parser"
 import dotenv from 'dotenv';
+import path from "path";
+import { fileURLToPath } from "url";
+
+
 
 const app = express()
 
 
 dotenv.config();
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 const port = process.env.PORT;
 
@@ -55,7 +66,7 @@ app.post("/recommend", async (req, res) => {
         const sampleMovies = movies.slice((randomNumber - 8), randomNumber);
 
 
-        res.render("index.ejs", { movies: sampleMovies, posterUrl: "https:/image.tmdb.org/t/p/w400", genres: genresResponse.data.genres });
+        res.render("index", { movies: sampleMovies, posterUrl: "https:/image.tmdb.org/t/p/w400", genres: genresResponse.data.genres });
 
 
     } catch (error) {
