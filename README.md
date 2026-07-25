@@ -1,1 +1,1 @@
-Try Cinewatch: [Cinewatch](cine-watch-one.vercel.app)
+Try Cinewatch: Try Cinewatch: https://cine-watch-one.vercel.app
